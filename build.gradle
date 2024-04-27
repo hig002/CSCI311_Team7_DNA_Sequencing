@@ -1,6 +1,9 @@
 plugins {
     id 'java'
+    id 'application'
 }
+
+apply plugin : "java"
 
 group = 'org.example'
 version = '1.0-SNAPSHOT'
@@ -16,4 +19,19 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+application {
+    mainClassName = "algorithm_run.DNASequenceAnalysis"
+
+    if (project.hasProperty("mainClass")) {
+        getMainClass().set(project.getProperty("mainClass"))
+    }
+    else {
+        getMainClass().set(mainClassName)
+    }
+}
+
+run {
+    standardInput = System.in
 }
